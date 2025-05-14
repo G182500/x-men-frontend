@@ -5,15 +5,23 @@
     <mat-form-field appearance="fill" class="w-full">
       <mat-label>E-mail</mat-label>
       <input matInput formControlName="email" type="email">
+      <mat-error *ngIf="email.hasError('required') || email.hasError('email')">
+        {{ email.hasError('required') ? "O campo e-mail é obrigatório" : "E-mail inválido" }}
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill" class="w-full">
       <mat-label>Senha</mat-label>
-      <input matInput formControlName="password" type="password">
+      <input matInput formControlName="password" [type]="inputType">
+      <mat-error *ngIf="password.hasError('required')">
+        O campo senha é obrigatório
+      </mat-error>
     </mat-form-field>
 
-    <button type="submit" [disabled]="!form.valid" class="form-button bg-[#199274] rounded-xl hover:bg-[#2da88a]">
-      Entrar
+    <!--<mat-checkbox [checked]="inputType === 'text'" (change)="updateInputType()">Mostrar senha</mat-checkbox>-->
+
+    <button type="submit" [disabled]="!form.valid" class="form-button bg-[#1DB954] rounded-xl hover:bg-[#00d460]">
+      Login
     </button>
   </form>
 </div>

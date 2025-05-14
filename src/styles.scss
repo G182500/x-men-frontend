@@ -10,7 +10,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #1b1b1b;
+  background-color: #0D0D0D;
 }
 
 button:disabled {
@@ -19,11 +19,14 @@ button:disabled {
 }
 
 /*
-Verde Neural ->	#10A37F	Cor de destaque, ícones, botões ativos
-Cinza Escuro ->	#343541	Fundo principal
-Cinza Médio	-> #40414F	Cards, blocos de conteúdo
-Cinza Claro	-> #D1D5DB	Bordas, ícones neutros, linhas de apoio
-Texto Claro	-> #ECECF1	Texto primário
-Preto Código -> #202123	Áreas de resposta, caixas de código
-Branco Suave -> #FFFFFF	Texto claro (modo escuro invertido)
+Cor / Função	HEX	Descrição do uso
+Fundo principal	#0D0D0D	Preto profundo, base do app (dark real)
+Painéis/Cartões	#1A1A1A	Fundo de seções, leve variação
+Texto primário	#FFFFFF	Clareza total, branco sem discussão
+Texto secundário	#B3B3B3	Subtítulo, descrição, discreto na função
+Verde energia	#1DB954	Botões de ação, sucesso, confirmar
+Vermelho esforço	#E53935	Cancelar treino, erro, ou nível hard
+Amarelo alerta	#FFCA28	Alertas, energia, tipo "vai queimar"
+Cinza neutro	#2E2E2E	Separador, bordas, UI discreta
+Azul foco	#2196F3	Destaques, links, elementos ativos
 */

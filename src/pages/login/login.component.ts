@@ -10,6 +10,8 @@ import { AuthService } from 'src/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
+  inputType = "password";
+
   form = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required),
@@ -32,6 +34,10 @@ export class LoginComponent {
       console.error('Erro no login:', error);
       // Aqui poderia mostrar um toast ou alerta amigável ao usuário
     }
+  }
+
+  updateInputType() {
+    this.inputType = this.inputType === "password" ? "text" : "password";
   }
 
   get email() {
