@@ -11,26 +11,26 @@ import { AuthService } from 'src/services/auth.service';
 })
 export class LoginComponent {
   form = new FormGroup({
-    email: new FormControl(null, Validators.required),
+    email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required),
   });
 
   constructor(public router: Router, private authService: AuthService, private cookieService: CookieService,) { }
 
   async onClickSubmit() {
-    const userEmail = this.email.value;
-    const userPass = this.password.value;
-
-    if (userEmail && userPass) {
+    try {
       const { data } = await this.authService.login({
-        email: userEmail,
-        password: userPass,
+        email: this.email.value!,
+        password: this.password.value!,
       }) as any;
 
       console.log(data);
 
       this.cookieService.set("x-men-token", data.token);
       this.router.navigateByUrl('/home');
+    } catch (error) {
+      console.error('Erro no login:', error);
+      // Aqui poderia mostrar um toast ou alerta amigável ao usuário
     }
   }
 
