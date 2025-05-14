@@ -1,5 +1,5 @@
 <div class="flex justify-center items-center min-h-screen">
-  <form [formGroup]="form" (submit)="submit()" class="login-form shadow-2xl space-y-6">
+  <form [formGroup]="form" (ngSubmit)="onClickSubmit()" class="login-form shadow-2xl space-y-6">
     <p class="form-title">Bem-vindo de volta</p>
 
     <mat-form-field appearance="fill" class="w-full">
@@ -12,8 +12,7 @@
       <input matInput formControlName="password" type="password">
     </mat-form-field>
 
-    <button type="submit"
-      class="form-button bg-[#109473] rounded-xl hover:bg-[#10A37F]">
+    <button type="submit" [disabled]="!form.valid" class="form-button bg-[#199274] rounded-xl hover:bg-[#2da88a]">
       Entrar
     </button>
   </form>

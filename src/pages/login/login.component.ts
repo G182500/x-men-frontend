@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import User from 'src/interfaces/User';
+import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/services/auth.service';
 
 @Component({
@@ -9,26 +9,36 @@ import { AuthService } from 'src/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   form = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
+    email: new FormControl(null, Validators.required),
+    password: new FormControl(null, Validators.required),
   });
 
-  user?: User;
+  constructor(public router: Router, private authService: AuthService, private cookieService: CookieService,) { }
 
-  constructor(public router: Router, private authService: AuthService) {}
+  async onClickSubmit() {
+    const userEmail = this.email.value;
+    const userPass = this.password.value;
 
-  async ngOnInit() {}
+    if (userEmail && userPass) {
+      const { data } = await this.authService.login({
+        email: userEmail,
+        password: userPass,
+      }) as any;
 
-  async submit() {
-    console.log(this.form);
-    /*await this.authService.login({
-      email: 'gabriel@gmail.com',
-      password: 'senhaforte',
-    });
+      console.log(data);
 
-    this.storageService.set('user', resp.data);
-    */
+      this.cookieService.set("x-men-token", data.token);
+      this.router.navigateByUrl('/home');
+    }
+  }
+
+  get email() {
+    return this.form.controls.email;
+  }
+
+  get password() {
+    return this.form.controls.password;
   }
 }

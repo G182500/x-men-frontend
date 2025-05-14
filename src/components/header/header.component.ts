@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {}
+  isLoggedIn = false;
 
-  ngOnInit() {}
+  constructor(private router: Router) { }
+
+  ngOnInit() {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(event => {
+      const nav = event as NavigationEnd;
+      this.isLoggedIn = nav.urlAfterRedirects !== '/login';
+    });
+  }
 }

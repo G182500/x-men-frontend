@@ -10,20 +10,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(
     private http: HttpClient //private commonDbService: CommonDbService
-  ) {}
-  async checkToken(token: string, username: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-    });
-
-    return await this.http
-      .get(`http://localhost:3000/user?name=${username}`, {
-        headers,
-      })
-      .toPromise();
-  }
-
+  ) { }
   async login({ email, password }: { email: string; password: string }) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,19 +23,26 @@ export class AuthService {
       .toPromise();
   }
 
-  /*auth(user: any): Observable<any> {
-    return this.commonDbService.create('user/auth', user);
+  async checkToken(token: string) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+
+    return await this.http
+      .get("http://localhost:3000/user/auth", { headers }).toPromise();
   }
 
-  resendOtp(userId: string): Observable<any> {
-    return this.commonDbService.create('user/auth/otp/resend', { id: userId });
-  }
-
-  validateOtp(data: any): Observable<any> {
-    return this.commonDbService.create('user/auth/otp', data);
-  }
-
-  logout() {
-    this.http.delete(`${API}/user/auth`).subscribe((x) => x);
-  }*/
+  /*
+    resendOtp(userId: string): Observable<any> {
+      return this.commonDbService.create('user/auth/otp/resend', { id: userId });
+    }
+  
+    validateOtp(data: any): Observable<any> {
+      return this.commonDbService.create('user/auth/otp', data);
+    }
+  
+    logout() {
+      this.http.delete(`${API}/user/auth`).subscribe((x) => x);
+    }*/
 }

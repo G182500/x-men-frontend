@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
-import User from 'src/interfaces/User';
+//import { Storage } from '@ionic/storage-angular';
 import { AuthService } from 'src/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -10,31 +11,30 @@ import { AuthService } from 'src/services/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  user?: User;
+  myToken: string | undefined;
+  user?: { email: string };
 
   constructor(
     private router: Router,
-    private storageService: Storage,
-    private authService: AuthService
+    //private storageService: Storage,
+    private authService: AuthService,
+    private cookieService: CookieService,
+    private location: Location
   ) {
-    this.storageService.create();
+    //this.storageService.create();
   }
 
   async ngOnInit() {
-    this.user = await this.storageService.get('user');
+    this.myToken = this.cookieService.get('x-men-token');
 
-    if (!this.user) {
+    if (!this.myToken) {
       this.router.navigateByUrl('/login');
       return;
     }
 
-    const resp = (await this.authService.checkToken(
-      this.user.token,
-      this.user.username
-    )) as any;
-
+    const resp = await this.authService.checkToken(this.myToken) as any;
     if (!resp || !resp.data) this.router.navigateByUrl('/login');
 
-    this.router.navigateByUrl('/home');
+    if (this.location.path() === "/login") this.router.navigateByUrl('/home');
   }
 }
