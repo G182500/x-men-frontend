@@ -1,0 +1,29 @@
+<mat-card appearance="outlined" class="container mx-auto mt-3" *ngIf="selectedMutant">
+  <mat-card-header class="border-[#E0E0E0] border-b-2 mb-3 justify-between">
+    <mat-card-title class="text-[#212121]">{{selectedMutant.name | titlecase }}</mat-card-title>
+    <a [href]="'create-edit?id='+selectedMutant.id" class="flex font-medium items-center">
+      <span class="underline">Editar</span>
+      <mat-icon aria-hidden="false" aria-label="Edit data" fontIcon="edit" />
+    </a>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="flex flex-wrap gap-3 mb-5 font-medium">
+      <span class="bg-[#FBC02D] px-3 py-2 rounded-lg" *ngFor="let ability of selectedMutant.abilities">
+        {{ ability }}
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <mat-form-field appearance="outline">
+        <mat-label>Category</mat-label>
+        <input matInput type="text" [value]="selectedMutant.category | titlecase" readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Side</mat-label>
+        <input matInput type="text" [value]="selectedMutant.side | titlecase" readonly />
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -8,7 +8,11 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  isLoggedIn = false;
+  currentPath: string | null = null;
+  routes = [
+    { title: "Home", path: "/home" },
+    { title: "Lista de Mutantes", path: "/list" },
+  ];
 
   constructor(private router: Router) { }
 
@@ -17,7 +21,7 @@ export class HeaderComponent implements OnInit {
       filter(event => event instanceof NavigationEnd)
     ).subscribe(event => {
       const nav = event as NavigationEnd;
-      this.isLoggedIn = nav.urlAfterRedirects !== '/login';
+      this.currentPath = nav.urlAfterRedirects;
     });
   }
 }

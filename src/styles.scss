@@ -17,6 +17,33 @@ body {
   background-color: #FFFFFF;
 }
 
+mat-card {
+  &.container {
+    background-color: #fcfcfc !important;
+    border-radius: 10px !important;
+  }
+
+  &.mat-mdc-card-outlined {
+    border-color: #E0E0E0;
+    border-width: 2px;
+  }
+
+  .mat-mdc-card-header {
+    border: none;
+    margin-bottom: 10px;
+
+    mat-card-title {
+      color: #212121
+    }
+  }
+}
+
+mat-form-field {
+  div.mat-mdc-text-field-wrapper {
+    background-color: #FFFFFF;
+  }
+}
+
 button:disabled {
   opacity: 70%;
   cursor: not-allowed;

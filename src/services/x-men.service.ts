@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import IMutant from 'src/interfaces/Mutant';
+import IMutant from 'src/interfaces/mutant';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({

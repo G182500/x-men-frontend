@@ -7,7 +7,8 @@ import { XMenListComponent } from 'src/pages/x-men/x-men-list/x-men-list.compone
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'x-men/list', component: XMenListComponent },
+  { path: 'list', component: XMenListComponent },
+  { path: 'create-edit', component: HomeComponent },
 ];
 
 @NgModule({

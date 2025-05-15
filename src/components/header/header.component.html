@@ -1,4 +1,5 @@
-<div class="topnav mb-3" *ngIf="isLoggedIn">
-  <a class="active" href="home">Home</a>
-  <a href="x-men/list">X-Men</a>
+<div class="topnav mb-3" *ngIf="currentPath && currentPath !== '/login'">
+  <ng-container *ngFor="let route of routes">
+    <a [ngClass]="{ 'active': route.path === currentPath }" [href]="route.path">{{ route.title }}</a>
+  </ng-container>
 </div>

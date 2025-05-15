@@ -1,10 +1,19 @@
-mat-card {
-  background-color: #F5F5F5;
+table {
+  th {
+    color: #FFFFFF;
+    background-color: #2E2E2E;
+  }
 
-  table {
-    th {
-      color: #FFFFFF;
-      background-color: #2E2E2E;
+  tr {
+    cursor: pointer;
+
+    &.row-is-clicked,
+    &:hover {
+      background-color: #ebebeb;
+
+      td {
+        font-weight: 500;
+      }
     }
   }
 }

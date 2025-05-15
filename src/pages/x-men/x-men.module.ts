@@ -4,6 +4,8 @@ import { XMenListComponent } from './x-men-list/x-men-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { ComponentsModule } from "../../components/components.module";
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const routes: Routes = [
   {
@@ -16,6 +18,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [XMenListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes), MatTableModule, MatCardModule],
+  imports: [CommonModule, RouterModule.forChild(routes), MatTableModule, MatCardModule, MatPaginatorModule, ComponentsModule],
 })
 export class XMenModule { }
