@@ -7,11 +7,11 @@ import { XMenListComponent } from 'src/pages/x-men/x-men-list/x-men-list.compone
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'x-men', component: XMenListComponent },
+  { path: 'x-men/list', component: XMenListComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

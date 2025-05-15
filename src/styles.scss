@@ -7,10 +7,14 @@ body {
   height: 100%;
 }
 
+.mdc-notched-outline__notch {
+  border-right: none;
+}
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #0D0D0D;
+  background-color: #FFFFFF;
 }
 
 button:disabled {
@@ -18,15 +22,16 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/*
-Cor / Função	HEX	Descrição do uso
-Fundo principal	#0D0D0D	Preto profundo, base do app (dark real)
-Painéis/Cartões	#1A1A1A	Fundo de seções, leve variação
-Texto primário	#FFFFFF	Clareza total, branco sem discussão
-Texto secundário	#B3B3B3	Subtítulo, descrição, discreto na função
-Verde energia	#1DB954	Botões de ação, sucesso, confirmar
-Vermelho esforço	#E53935	Cancelar treino, erro, ou nível hard
-Amarelo alerta	#FFCA28	Alertas, energia, tipo "vai queimar"
-Cinza neutro	#2E2E2E	Separador, bordas, UI discreta
-Azul foco	#2196F3	Destaques, links, elementos ativos
+/* 
+Cor / Função        HEX       Descrição do uso
+------------------------------------------------------------
+Fundo principal     #FFFFFF   Fundo base branco
+Painéis/Cartões     #F5F5F5   Seções destacadas, mas claras
+Texto primário      #212121   Preto quase puro para legibilidade
+Texto secundário    #757575   Cinza discreto para descrições
+Verde energia       #1DB954   Ação positiva, confirmações
+Vermelho esforço    #E53935   Erros, alertas críticos
+Amarelo alerta      #FBC02D   Avisos, cautela
+Cinza neutro        #E0E0E0   Bordas, divisores sutis
+Azul foco           #1976D2   Elementos ativos, links, destaques
 */
