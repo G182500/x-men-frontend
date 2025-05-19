@@ -32,9 +32,9 @@ export class AppComponent implements OnInit {
       return;
     }
 
-    const resp = await this.authService.checkToken(this.myToken) as any;
+    const resp = (await this.authService.checkToken(this.myToken)) as any;
     if (!resp || !resp.data) this.router.navigateByUrl('/login');
 
-    if (this.location.path() === "/login") this.router.navigateByUrl('/home');
+    if (this.location.path() === '/login') this.router.navigateByUrl('');
   }
 }

@@ -1,9 +1,9 @@
 <div class="flex justify-center items-center min-h-screen">
   <form [formGroup]="form" (ngSubmit)="onClickSubmit()"
-    class="login-form shadow-xl space-y-6 p-8 bg-[#F5F5F5] rounded-2xl w-full max-w-md">
-    <p class="text-2xl font-semibold text-[#212121] text-center">Bem-vindo de volta</p>
+    class="login-form border-2 shadow-xl space-y-6 max-w-md">
+    <h1 class="text-2xl">Bem-vindo de volta</h1>
 
-    <mat-form-field appearance="outline" class="w-full">
+    <mat-form-field appearance="outline">
       <mat-label>E-mail</mat-label>
       <input matInput formControlName="email" type="email" />
       <mat-error *ngIf="email.hasError('required') || email.hasError('email')">
@@ -11,7 +11,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full">
+    <mat-form-field appearance="outline">
       <mat-label>Senha</mat-label>
       <input matInput formControlName="password" [type]="inputType" />
       <mat-error *ngIf="password.hasError('required')">
@@ -20,8 +20,8 @@
     </mat-form-field>
 
     <button type="submit" [disabled]="!form.valid"
-      class="form-button w-full bg-[#1DB954] text-white font-medium py-2 px-4 rounded-xl transition-all duration-200 hover:bg-[#00d460] disabled:opacity-50">
-      Login
+      class="green-btn text-lg w-full">
+      Entrar
     </button>
   </form>
 </div>

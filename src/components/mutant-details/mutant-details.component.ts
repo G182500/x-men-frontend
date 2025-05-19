@@ -6,8 +6,25 @@ import IMutant from 'src/interfaces/mutant';
   templateUrl: './mutant-details.component.html',
   styleUrls: ['./mutant-details.component.scss'],
 })
-export class MutantDetailsComponent {
-  constructor() { }
+export class MutantDetailsComponent implements OnInit {
+  side?: IMutant['side'];
+  sides: string[] = ['GOOD', 'NEUTRAL', 'EVIL']; // get from API
+
+  constructor() {}
 
   @Input() selectedMutant: IMutant | null = null;
+
+  ngOnInit() {}
+
+  search(text: any) {
+    console.log(text);
+  }
+
+  select(text: any) {
+    console.log(text);
+  }
+
+  displayFn(side: string): string {
+    return side.toLocaleLowerCase();
+  }
 }

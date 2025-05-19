@@ -2,6 +2,6 @@ export default interface IMutant {
   id: string;
   name: string;
   category: string;
-  side: "good" | "evil" | "neutral";
+  side: 'GOOD' | 'EVIL' | 'NEUTRAL';
   abilities: string[];
 }

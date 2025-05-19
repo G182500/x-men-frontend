@@ -6,10 +6,18 @@ import { HeaderComponent } from './header/header.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [HeaderComponent, MutantDetailsComponent],
-  imports: [CommonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatIconModule],
-  exports: [HeaderComponent, MutantDetailsComponent]
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatAutocompleteModule,
+  ],
+  exports: [HeaderComponent, MutantDetailsComponent],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

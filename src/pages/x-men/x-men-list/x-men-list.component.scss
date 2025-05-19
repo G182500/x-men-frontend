@@ -1,18 +1,21 @@
 table {
-  th {
-    color: #FFFFFF;
-    background-color: #2E2E2E;
-  }
-
   tr {
-    cursor: pointer;
+    th {
+      color: #212121;
+      background-color: #dfdfdf;
+    }
+  }
+}
 
+.mat-mdc-table {
+  tr {
     &.row-is-clicked,
     &:hover {
-      background-color: #ebebeb;
+      background-color: #f5f5f5;
 
       td {
         font-weight: 500;
+        cursor: pointer;
       }
     }
   }

@@ -10,18 +10,18 @@ import { filter } from 'rxjs/operators';
 export class HeaderComponent implements OnInit {
   currentPath: string | null = null;
   routes = [
-    { title: "Home", path: "/home" },
-    { title: "Lista de Mutantes", path: "/list" },
+    { title: 'Home', path: '/' },
+    { title: 'Lista de Mutantes', path: '/x-men/list' },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(event => {
-      const nav = event as NavigationEnd;
-      this.currentPath = nav.urlAfterRedirects;
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        const nav = event as NavigationEnd;
+        this.currentPath = nav.urlAfterRedirects;
+      });
   }
 }

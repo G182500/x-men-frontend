@@ -42,11 +42,48 @@ mat-form-field {
   div.mat-mdc-text-field-wrapper {
     background-color: #FFFFFF;
   }
+
+  label {
+    color: #757575 !important;
+  }
 }
 
-button:disabled {
-  opacity: 70%;
-  cursor: not-allowed;
+button { 
+  &:disabled {
+    opacity: 70%;
+    cursor: not-allowed;
+  }
+}
+
+button, a {
+  &.green-btn {
+    background-color: #1DB954;
+    border-radius: 0.5rem;
+    color: #ffffff;
+		font-weight: 500;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+		&:disabled{
+			opacity: 0.5;
+		}
+
+    &:hover {
+      background-color: #00d460;
+    }
+  }
+}
+
+/* Change the mat-form-field border focused color */
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused
+  .mdc-notched-outline__trailing {
+  border-color: #808080 !important;
 }
 
 /* 
