@@ -10,8 +10,8 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(
     private http: HttpClient //private commonDbService: CommonDbService
-  ) { }
-  async login({ email, password }: { email: string; password: string }) {
+  ) {}
+  async login({ email, password }: LoginResponse) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -23,14 +23,15 @@ export class AuthService {
       .toPromise();
   }
 
-  async checkToken(token: string) {
+  async checkToken(token: string): Promise<CheckTokenResponse> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
 
-    return await this.http
-      .get("http://localhost:3000/user/auth", { headers }).toPromise();
+    return (await this.http
+      .get('http://localhost:3000/user/auth', { headers })
+      .toPromise()) as CheckTokenResponse;
   }
 
   /*
@@ -45,4 +46,19 @@ export class AuthService {
     logout() {
       this.http.delete(`${API}/user/auth`).subscribe((x) => x);
     }*/
+}
+
+interface LoginResponse {
+  email: string;
+  password: string;
+}
+
+interface CheckTokenResponse {
+  message?: string;
+  data?: {
+    email: string;
+    exp: number;
+    iat: number;
+    sub: string;
+  };
 }
