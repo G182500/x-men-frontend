@@ -10,26 +10,28 @@ import { AuthService } from 'src/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  inputType = "password";
+  inputType = 'password';
 
   form = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, Validators.required),
   });
 
-  constructor(public router: Router, private authService: AuthService, private cookieService: CookieService,) { }
+  constructor(
+    public router: Router,
+    private authService: AuthService,
+    private cookieService: CookieService
+  ) {}
 
   async onClickSubmit() {
     try {
-      const { data } = await this.authService.login({
+      const { data } = (await this.authService.login({
         email: this.email.value!,
         password: this.password.value!,
-      }) as any;
+      })) as any;
 
-      console.log(data);
-
-      this.cookieService.set("x-men-token", data.token);
-      this.router.navigateByUrl('/home');
+      this.cookieService.set('x-men-token', data.token);
+      this.router.navigateByUrl('/');
     } catch (error) {
       console.error('Erro no login:', error);
       // Aqui poderia mostrar um toast ou alerta amigável ao usuário
@@ -37,7 +39,7 @@ export class LoginComponent {
   }
 
   updateInputType() {
-    this.inputType = this.inputType === "password" ? "text" : "password";
+    this.inputType = this.inputType === 'password' ? 'text' : 'password';
   }
 
   get email() {

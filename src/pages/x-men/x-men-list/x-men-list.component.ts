@@ -15,7 +15,7 @@ export class XMenListComponent implements OnInit {
   dataSource = new MatTableDataSource<IMutant>();
 
   selectedMutant: IMutant | null = null;
-  message: string = "";
+  message: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -23,13 +23,13 @@ export class XMenListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(public router: Router, private xMenService: XMenService) { }
+  constructor(public router: Router, private xMenService: XMenService) {}
 
   async ngOnInit() {
     const { data, message } = await this.xMenService.getMutants();
 
     if (data?.length) this.dataSource.data = data;
-    else this.message = message || "Nenhum mutante encontrado.";
+    else this.message = message || 'Nenhum mutante encontrado.';
   }
 
   selectRow(row: IMutant) {

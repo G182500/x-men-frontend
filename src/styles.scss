@@ -14,18 +14,12 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #FFFFFF;
+  background-color: #d8d8d8;
 }
 
 mat-card {
   &.container {
-    background-color: #fcfcfc !important;
     border-radius: 10px !important;
-  }
-
-  &.mat-mdc-card-outlined {
-    border-color: #E0E0E0;
-    border-width: 2px;
   }
 
   .mat-mdc-card-header {
