@@ -8,7 +8,7 @@ import { AuthGuard } from 'src/services/auth-guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, data: { hideHeader: true } },
   {
     path: 'x-men/list',
     component: XMenListComponent,
