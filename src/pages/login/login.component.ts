@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/services/auth.service';
@@ -20,7 +21,8 @@ export class LoginComponent {
   constructor(
     public router: Router,
     private authService: AuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private snackBar: MatSnackBar
   ) {}
 
   async onClickSubmit() {
@@ -34,8 +36,14 @@ export class LoginComponent {
       this.router.navigateByUrl('/');
     } catch (error: any) {
       console.error(error);
-      /*this.errorMessage =
-        error?.error?.message || 'Erro inesperado ao tentar fazer login.';*/
+
+      const message =
+        error?.error?.message || 'Erro inesperado ao tentar fazer login.';
+
+      this.snackBar.open(message, 'Fechar', {
+        duration: 6000,
+        panelClass: ['error-snackbar'],
+      });
     }
   }
 

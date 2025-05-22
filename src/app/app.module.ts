@@ -8,6 +8,7 @@ import { XMenModule } from 'src/pages/x-men/x-men.module';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { LoginModule } from 'src/pages/login/login.module';
 import { ComponentsModule } from 'src/components/components.module';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent],
@@ -19,8 +20,9 @@ import { ComponentsModule } from 'src/components/components.module';
     LoginModule,
     XMenModule,
     IonicStorageModule.forRoot(),
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
