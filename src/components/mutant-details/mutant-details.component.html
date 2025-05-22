@@ -1,33 +1,51 @@
 <mat-card appearance="outlined" class="container mx-auto mt-3" *ngIf="selectedMutant">
-  <mat-card-header class="justify-between">
+  <mat-card-header class="items-center justify-between">
     <mat-card-title>{{selectedMutant.name | titlecase }}</mat-card-title>
+
+    <div class="flex gap-5">
+      <button id="save-mutant-btn" class="flex green-btn gap-1 justify-center text-base">
+        <mat-icon aria-hidden="false" aria-label="Save mutant" fontIcon="save" />
+        Salvar
+      </button>
+      <button id="delete-mutant-btn" class="flex green-btn gap-1 justify-center text-base">
+        <mat-icon aria-hidden="false" aria-label="Delete mutant" fontIcon="delete" />
+        Deletar
+      </button>
+    </div>
   </mat-card-header>
 
   <mat-card-content>
-    <div class="flex flex-wrap gap-3 mb-5 font-medium">
-      <span class="bg-[#FBC02D] px-3 py-2 rounded-lg" *ngFor="let ability of selectedMutant.abilities">
-        {{ ability }}
-      </span>
-      <button class="flex green-btn justify-center">
-        <mat-icon aria-hidden="false" aria-label="Edit abilities" fontIcon="edit" />
-      </button>
-    </div>
+    <form [formGroup]="form">
+      <div class="flex flex-wrap gap-3 mb-5 font-medium">
+        <span class="bg-[#FBC02D] px-3 py-2 rounded-lg" *ngFor="let ability of selectedMutant.abilities">
+          {{ ability }}
+        </span>
+        <button id="edit-abilities-btn" class="flex green-btn justify-center">
+          <mat-icon aria-hidden="false" aria-label="Edit abilities" fontIcon="edit" />
+        </button>
+      </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <mat-form-field appearance="outline">
-        <mat-label>Category</mat-label>
-        <input matInput type="text" [value]="selectedMutant.category | titlecase" />
-      </mat-form-field>
+      <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <mat-form-field appearance="outline">
+          <mat-label>Category</mat-label>
+          <input type="text" formControlName="category" matInput [matAutocomplete]="categoryAuto" (keyup)="filterCategories()" />
+          <mat-autocomplete #categoryAuto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let category of filteredCategories" [value]="category">
+              {{ category | titlecase }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="form.get('category')?.getError('required')">Campo obrigatório</mat-error>
+        </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Side</mat-label>
-        <input type="text" formControlName="side" matInput [matAutocomplete]="auto" (keyup)="search($event)" />
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn"> <!--(optionSelected)="select($event.option.value)"-->
-          <mat-option *ngFor="let side of sides" [value]="side">
-            {{ side | titlecase }}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="side" placeholder="Side">
+            <mat-option *ngFor="let side of sides" [value]="side">
+              {{ side | titlecase }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('side')?.getError('required')">Campo obrigatório</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
   </mat-card-content>
 </mat-card>

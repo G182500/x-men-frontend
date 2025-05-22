@@ -1,5 +1,5 @@
 <mat-card appearance="outlined" class="container mx-auto">
-  <mat-card-header class="justify-between">
+  <mat-card-header class="items-center justify-between">
     <mat-card-title>Lista de Mutantes</mat-card-title>
     <button class="flex green-btn gap-1 justify-center text-base">
       <mat-icon aria-hidden="false" aria-label="Add mutant" fontIcon="add" />
@@ -9,11 +9,6 @@
 
   <mat-card-content>
     <table mat-table [dataSource]="dataSource" *ngIf="dataSource.data.length; else emptyTable">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
@@ -44,4 +39,4 @@
   </mat-card-content>
 </mat-card>
 
-<app-mutant-details [selectedMutant]="selectedMutant" />
+<app-mutant-details [selectedMutant]="selectedMutant" *ngIf="selectedMutant" />

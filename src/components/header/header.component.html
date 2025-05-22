@@ -1,5 +1,5 @@
 <div class="topnav mb-3">
   <ng-container *ngFor="let route of routes">
-    <a [ngClass]="{ 'active': route.path === currentPath }" [href]="route.path">{{ route.title }}</a>
+    <a [routerLink]="route.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ route.title }}</a>
   </ng-container>
 </div>

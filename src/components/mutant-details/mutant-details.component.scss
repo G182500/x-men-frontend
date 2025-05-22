@@ -2,9 +2,17 @@ mat-form-field input {
   font-size: 14px;
 }
 
-button.green-btn {
+#delete-mutant-btn,
+#edit-abilities-btn {
   background-color: #757575;
 
+  &:hover {
+    background-color: #8f8f8f;
+  }
+}
+
+
+#delete-mutant-btn, #edit-abilities-btn, #save-mutant-btn {
   mat-icon {
     font-size: 22px;
   }

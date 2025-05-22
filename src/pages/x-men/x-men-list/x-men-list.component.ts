@@ -11,7 +11,7 @@ import { XMenService } from 'src/services/x-men.service';
   styleUrls: ['./x-men-list.component.scss'],
 })
 export class XMenListComponent implements OnInit {
-  displayedColumns = ['id', 'name', 'category', 'side'];
+  displayedColumns = ['name', 'category', 'side'];
   dataSource = new MatTableDataSource<IMutant>();
 
   selectedMutant: IMutant | null = null;
