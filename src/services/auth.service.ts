@@ -1,56 +1,45 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-//import { Observable } from 'rxjs';
-//import { API } from 'src/app/app.api';
-//import { CommonDbService } from './common-db.service';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(
-    private http: HttpClient //private commonDbService: CommonDbService
-  ) {}
-  async login({ email, password }: LoginResponse) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
+  private readonly JSON_HEADERS = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
 
-    const body = { email, password };
+  constructor(private http: HttpClient) {}
 
-    return await this.http
-      .post('http://localhost:3000/login', body, { headers })
-      .toPromise();
+  async login(credentials: LoginRequest): Promise<LoginResponse> {
+    const url = 'http://localhost:3000/login';
+
+    return await firstValueFrom(
+      this.http.post<LoginResponse>(url, credentials, {
+        headers: this.JSON_HEADERS,
+      })
+    );
   }
 
   async checkToken(token: string): Promise<CheckTokenResponse> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    });
+    const url = 'http://localhost:3000/user/auth';
+    const headers = this.JSON_HEADERS.set('Authorization', `Bearer ${token}`);
 
-    return (await this.http
-      .get('http://localhost:3000/user/auth', { headers })
-      .toPromise()) as CheckTokenResponse;
+    return await firstValueFrom(
+      this.http.get<CheckTokenResponse>(url, { headers })
+    );
   }
+}
 
-  /*
-    resendOtp(userId: string): Observable<any> {
-      return this.commonDbService.create('user/auth/otp/resend', { id: userId });
-    }
-  
-    validateOtp(data: any): Observable<any> {
-      return this.commonDbService.create('user/auth/otp', data);
-    }
-  
-    logout() {
-      this.http.delete(`${API}/user/auth`).subscribe((x) => x);
-    }*/
+interface LoginRequest {
+  email: string;
+  password: string;
 }
 
 interface LoginResponse {
-  email: string;
-  password: string;
+  message: string;
+  data?: { token: string };
 }
 
 interface CheckTokenResponse {

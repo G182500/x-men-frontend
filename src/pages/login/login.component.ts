@@ -25,20 +25,21 @@ export class LoginComponent {
 
   async onClickSubmit() {
     try {
-      const { data } = (await this.authService.login({
+      const { data } = await this.authService.login({
         email: this.email.value!,
         password: this.password.value!,
-      })) as any;
+      });
 
-      this.cookieService.set('x-men-token', data.token);
+      this.cookieService.set('x-men-token', data!.token);
       this.router.navigateByUrl('/');
-    } catch (error) {
-      console.error('Erro no login:', error);
-      // Aqui poderia mostrar um toast ou alerta amigável ao usuário
+    } catch (error: any) {
+      console.error(error);
+      /*this.errorMessage =
+        error?.error?.message || 'Erro inesperado ao tentar fazer login.';*/
     }
   }
 
-  updateInputType() {
+  togglePasswordVisibility() {
     this.inputType = this.inputType === 'password' ? 'text' : 'password';
   }
 
