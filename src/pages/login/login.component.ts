@@ -37,8 +37,10 @@ export class LoginComponent {
     } catch (error: any) {
       console.error(error);
 
-      const message =
-        error?.error?.message || 'Erro inesperado ao tentar fazer login.';
+      let message = 'Erro ao fazer login';
+
+      if (error?.error?.message) message += `: ${error?.error?.message}.`;
+      else message += ', tente novamente.';
 
       this.snackBar.open(message, 'Fechar', {
         duration: 6000,
